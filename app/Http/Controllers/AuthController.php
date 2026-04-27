@@ -66,4 +66,19 @@ class AuthController extends Controller
 
         return redirect()->route('auth.login');
     }
+
+    public function loginAsGuest()
+    {
+        $loggedIn = Auth::attempt([
+            'email'    => 'guest@guest',
+            'password' => 'password',
+        ]);
+
+        if ($loggedIn)
+        {
+            return redirect()->route('app.homepage');
+        } else {
+            return back()->withErrors(['invalid' => 'Invalid credentials.']);
+        }
+    }
 }
