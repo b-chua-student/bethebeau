@@ -28,4 +28,7 @@ Route::name('app.')->middleware(['auth', 'not-guest'])->group(function () {
 
 Route::name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'showDashboard'])->name('dashboard');
+    Route::resource('products', ProductController::class);
+    Route::resource('orders', OrderController::class);
+    Route::resource('users', UserController::class);
 });
