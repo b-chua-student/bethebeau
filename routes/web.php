@@ -9,6 +9,7 @@ Route::name('auth.')->controller(AuthController::class)->group(function () {
     Route::get('/register', 'showRegister')->name('register');
     Route::post('/login', 'login')->name('submit-login');
     Route::post('/register', 'register')->name('submit-register');
+    Route::post('/logout', 'logout')->name('logout');
 Route::name('app.')->middleware('auth')->group(function () {
     Route::get('/homepage', fn () => view('app.homepage'))->name('homepage');
 });
