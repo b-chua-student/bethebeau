@@ -26,15 +26,16 @@
     @endif
 
     @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <div id="error-banner" class="alert alert-error" style="position:absolute; top:1rem; right:1rem; z-index:9999;">
-                <p>{{ $error }}</p>
-            </div>
-        @endforeach
-
+        <div style="position:fixed; top:1rem; right:1rem; z-index:9999; display:flex; flex-direction:column; gap:0.5rem;">
+            @foreach ($errors->all() as $error)
+                <div class="error-banner alert alert-danger m-0">
+                    {{ $error }}
+                </div>
+            @endforeach
+        </div>
         <script>
             setTimeout(() => {
-                document.getElementById('error-banner').style.display = 'none';
+                document.querySelectorAll('.error-banner').forEach(el => el.style.display = 'none');
             }, 3000);
         </script>
     @endif
