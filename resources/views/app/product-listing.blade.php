@@ -5,6 +5,8 @@
 @section('content')
 <h1>Product Listing</h1>
 
+<x-search-form route='product-listing'/>
+
     @foreach ($products as $product)
 
     <div>

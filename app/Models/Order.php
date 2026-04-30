@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Scout\Searchable;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     const UPDATED_AT = null; // disable Laravel's auto updated_at
     const CREATED_AT = null; // disable Laravel's auto updated_at
@@ -49,5 +50,18 @@ class Order extends Model
         static::creating(function ($model) {
             $model->id = (string) \Illuminate\Support\Str::uuid();
         });
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'email'       => $this->email,
+            'shipped_to'  => $this->shipped_to,
+            'status'      => $this->status,
+            'ordered_at'  => $this->ordered_at,
+            'total_price' => (float) $this->total_price,
+            'name'        => $this->user?->first_name . ' ' . $this->user?->last_name,
+            'ordered_at'  => $this->ordered_at,
+        ];
     }
 }

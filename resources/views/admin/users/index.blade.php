@@ -7,6 +7,8 @@
 
 <a href="{{ route('admin.users.create') }}">Add User</a>
 
+<x-search-form route='user-management'/>
+
 <table>
   <tr>
     <th>ID</th>
