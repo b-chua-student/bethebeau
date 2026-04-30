@@ -39,7 +39,8 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
         $users = User::all();
-        return view('admin.orders.edit', compact('order', 'users'));
+        $products = Product::all();
+        return view('admin.orders.edit', compact('order', 'users', 'products'));
     }
 
     public function update(OrderRequest $request, $id)
