@@ -39,4 +39,11 @@ class SearchController extends Controller
             ->get();
         return view('admin.users.index', compact('users'));
     }
+
+    public function searchOrdersManagement(Request $request)
+    {
+        $query = $request->input('query');
+        $orders = Order::search($query)->get();
+        return view('admin.orders.index', compact('orders'));
+    }
 }
