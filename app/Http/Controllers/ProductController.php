@@ -16,10 +16,18 @@ class ProductController extends Controller
         return view('admin.products.index', compact('products'));
     }
 
-    public function showProductView($id)
+    public function showActive()
+    {
+        $products = Product::where('is_active', true)
+            ->where('stock', '>', 0)
+            ->get();
+        return view('app.product-listing', compact('products'));
+    }
+
+    public function showProduct($id)
     {
         $product = Product::findOrFail($id);
-        return view('product-view', compact('product'));
+        return view('app.product-view', compact('product'));
     }
 
     public function create()
