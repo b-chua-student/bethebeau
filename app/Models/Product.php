@@ -52,7 +52,11 @@ class Product extends Model
         return [
             'category'   => $this->category?->name ?? '',
             'name'        => $this->name,
+            'description' => $this->description,
             'price'       => (float) $this->price,
+            'stock'       => (int) $this->stock,
+            'is_active' => $this->is_active ? 'Active' : 'Inactive',
+            'slug'        => $this->slug,
         ];
     }
 }
