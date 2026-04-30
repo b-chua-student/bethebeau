@@ -38,6 +38,8 @@ Route::name('search.')->controller(SearchController::class)->middleware(['auth']
         ->name('product-listing');
     Route::get('products/index/search', [SearchController::class, 'searchProductManagement'])
         ->name('product-management');
+    Route::get('categories/index/search', [SearchController::class, 'searchCategoryManagement'])
+        ->name('category-management');
 });
 
 Route::name('admin.')->middleware('auth')->group(function () {
