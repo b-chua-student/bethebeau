@@ -11,6 +11,7 @@
 
 <table>
   <tr>
+    <th>#</th>
     <th>ID</th>
     <th>Customer Name</th>
     <th>Email</th>
@@ -22,6 +23,7 @@
   </tr>
     @foreach ($orders as $order)
     <tr>
+        <td>{{ $loop->iteration }}</td>
         <td>{{ $order->id }}</td>
         <td>{{ $order->user->first_name . ' ' . $order->user->last_name }}</td>
         <td>{{ $order->email }}</td>
