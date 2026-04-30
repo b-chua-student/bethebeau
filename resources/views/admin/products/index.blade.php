@@ -7,6 +7,8 @@
 
 <a href="{{ route('admin.products.create') }}">Add Product</a>
 
+<x-search-form route='product-management'/>
+
 <table>
   <tr>
     <th>ID</th>
@@ -28,7 +30,7 @@
         <td>{{ $product->description }}</td>
         <td>{{ $product->price }}</td>
         <td>{{ $product->stock }}</td>
-        <td>{{ $product->is_active }}</td>
+        <td>{{ $product->is_active ? 'Active' : 'Inactive' }}</td>
         <td>{{ $product->slug }}</td>
         <td>{{ $product->created_at }}</td>
         <td>{{ $product->updated_at }}</td>
