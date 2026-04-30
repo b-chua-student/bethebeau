@@ -33,7 +33,9 @@
         <td>{{ $order->total_price }}</td>
         <td>
             @foreach ($order->items as $item)
-                {{ $item->product->name }} x{{ $item->quantity }}<br>
+                <a href="{{ route('search.product-management', ['query' => $item->product->name]) }}">
+                    {{ $item->product->name }}
+                </a> x{{ $item->quantity }}<br>
             @endforeach
         </td>
         <td>{{ $order->ordered_at }}</td>
