@@ -41,7 +41,7 @@ class ProductFactory extends Factory
             'description' => fake()->sentence(),
             'price' => fake()->randomFloat(2, 1, 199),
             'stock' => fake()->randomNumber(2),
-            'is_active' => fake()->boolean(0.90),
+            'is_active' => fake()->boolean(90),
             'slug' => Str::slug($name) . '-' . uniqid(),
         ];
     }
