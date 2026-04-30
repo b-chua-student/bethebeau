@@ -34,6 +34,7 @@ Route::name('app.')->middleware('auth')->group(function () {
 
 Route::name('app.')->middleware(['auth', 'not-guest'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('process-checkout');
 });
 
 Route::name('search.')->controller(SearchController::class)->middleware(['auth'])->group(function () {
