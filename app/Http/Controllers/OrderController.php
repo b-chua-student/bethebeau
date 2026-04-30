@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use App\Models\Product;
 use App\Http\Requests\OrderRequest;
@@ -46,6 +47,20 @@ class OrderController extends Controller
     public function update(OrderRequest $request, $id)
     {
         $order = Order::findOrFail($id);
+
+        if ($request->has('items')) {
+            foreach ($request->items as $item) {
+                OrderItem::updateOrCreate(
+                    ['id' => $item['id'] ?? null],
+                    [
+                        'order_id'   => $order->id,
+                        'product_id' => $item['product_id'],
+                        'quantity'   => $item['quantity'],
+                        'unit_price' => $item['unit_price'],
+                    ]
+                );
+            }
+        }
 
         $order->update($request->validated());
         return redirect()->route('admin.orders.index')->with('success', 'Order updated.');
