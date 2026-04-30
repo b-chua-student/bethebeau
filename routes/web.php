@@ -8,6 +8,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 
 Route::fallback(fn () => redirect()->route('auth.login'));
 
@@ -34,4 +35,5 @@ Route::name('admin.')->middleware('auth')->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('orders', OrderController::class);
     Route::resource('users', UserController::class);
+    Route::resource('categories', CategoryController::class);
 });
