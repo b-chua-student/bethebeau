@@ -42,6 +42,8 @@ Route::name('search.')->controller(SearchController::class)->middleware(['auth']
         ->name('category-management');
     Route::get('users/index/search', [SearchController::class, 'searchUserManagement'])
         ->name('user-management');
+    Route::get('orders/index/search', [SearchController::class, 'searchOrdersManagement'])
+        ->name('orders-management');
 });
 
 Route::name('admin.')->middleware('auth')->group(function () {
