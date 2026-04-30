@@ -13,6 +13,12 @@ class SearchController extends Controller
     {
         $query = $request->input('query');
         $from = $request->input('from', 'app.product-listing');
+        $blockedTerms = ['active', 'inactive'];
+
+        if (in_array(strtolower($query), $blockedTerms)) {
+            return view('app.product-listing', ['products' => collect()]);
+        }
+
         $products = Product::search($query)
             ->query(fn($q) => $q->where('is_active', true))
             ->get();
