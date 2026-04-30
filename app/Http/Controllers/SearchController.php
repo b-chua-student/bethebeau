@@ -23,4 +23,12 @@ class SearchController extends Controller
             ->get();
         return view('app.product-listing', compact('products'));
     }
+
+    public function searchProductManagement(Request $request)
+    {
+        $query = $request->input('query');
+        $products = Product::search($query)->get();
+        return view('admin.products.index', compact('products'));
+    }
+
 }
