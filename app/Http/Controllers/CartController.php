@@ -51,5 +51,16 @@ class CartController extends Controller
 
         return redirect()->route('app.shopping-cart')->with('success', 'Item removed.');
     }
+
+    public function update(Request $request, $id)
+    {
+        $item = CartItem::findOrFail($id);
+        if ($request->quantity < 1) {
+            $item->delete();
+        } else {
+            $item->update(['quantity' => $request->quantity]);
+        }
+        return redirect()->route('app.shopping-cart');
+    }
 }
 
