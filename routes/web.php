@@ -31,6 +31,7 @@ Route::name('app.')->middleware('auth')->group(function () {
     Route::patch('/shopping-cart/update/{id}', [CartController::class, 'update'])->name('update-cart');
     Route::get('/product-listing', [ProductController::class, 'showActive'])->name('product-listing');
     Route::get('/product/{id}', [ProductController::class, 'showProduct'])->name('view-product');
+    Route::get('/order-confirmation/{order}', [CheckoutController::class, 'confirmation'])->name('order-confirmation');
 });
 
 Route::name('app.')->middleware(['auth', 'not-guest'])->group(function () {
