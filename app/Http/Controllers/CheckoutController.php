@@ -64,4 +64,16 @@ class CheckoutController extends Controller
 
         return redirect()->route('app.order-confirmation', $order->id)->with('success', 'Order placed successfully!');
     }
+
+    public function confirmation(Order $order)
+    {
+        $order->load('items.product');
+
+        $subtotal = $order->items->sum(fn($item) => $item->unit_price * $item->quantity);
+        $shipping = 99.99;
+        $tax = $subtotal * 0.12;
+        $total = $order->total_price;
+
+        return view('app.order-confirmation', compact('order', 'subtotal', 'shipping', 'tax', 'total'));
+    }
 }
