@@ -26,6 +26,7 @@ Route::name('auth.')->controller(AuthController::class)->group(function () {
 Route::name('app.')->middleware('auth')->group(function () {
     Route::get('/homepage', fn () => view('app.homepage'))->name('homepage');
     Route::get('/shopping-cart', [CartController::class, 'index'])->name('shopping-cart');
+    Route::post('/shopping-cart/add', [CartController::class, 'add'])->name('add-to-cart');
     Route::get('/product-listing', [ProductController::class, 'showActive'])->name('product-listing');
     Route::get('/product/{id}', [ProductController::class, 'showProduct'])->name('view-product');
 });
