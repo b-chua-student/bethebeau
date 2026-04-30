@@ -34,7 +34,8 @@ Route::name('app.')->middleware(['auth', 'not-guest'])->group(function () {
 });
 
 Route::name('search.')->controller(SearchController::class)->middleware(['auth'])->group(function () {
-    Route::get('/products/search', [SearchController::class, 'searchProduct'])->name('product-listing');
+    Route::get('/product-listing/search', [SearchController::class, 'searchProductListing'])
+        ->name('product-listing');
 });
 
 Route::name('admin.')->middleware('auth')->group(function () {
