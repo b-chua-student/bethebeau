@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SearchController;
 
 Route::fallback(fn () => redirect()->route('auth.login'));
 
@@ -30,6 +31,10 @@ Route::name('app.')->middleware('auth')->group(function () {
 
 Route::name('app.')->middleware(['auth', 'not-guest'])->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout');
+});
+
+Route::name('search.')->controller(SearchController::class)->middleware(['auth'])->group(function () {
+    Route::get('/products/search', [SearchController::class, 'searchProduct'])->name('product-listing');
 });
 
 Route::name('admin.')->middleware('auth')->group(function () {
