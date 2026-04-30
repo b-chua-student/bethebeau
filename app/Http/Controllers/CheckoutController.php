@@ -31,7 +31,7 @@ class CheckoutController extends Controller
         $cart = Cart::where('user_id', $user->id)->with('items.product')->first();
 
         if (!$cart || $cart->items->isEmpty()) {
-            return redirect()->route('shopping-cart')->with('error', 'Your cart is empty.');
+            return redirect()->route('app.shopping-cart')->with('error', 'Your cart is empty.');
         }
 
         $subtotal = $cart->items->sum(fn($item) => $item->product->price * $item->quantity);
