@@ -31,4 +31,12 @@ class SearchController extends Controller
         return view('admin.products.index', compact('products'));
     }
 
+    public function searchUserManagement(Request $request)
+    {
+        $query = $request->input('query');
+        $users = User::search($query)
+            ->query(fn($q) => $q->where('email', '!=', 'guest@guest'))
+            ->get();
+        return view('admin.users.index', compact('users'));
+    }
 }
