@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Dashboard')
 
@@ -7,5 +7,6 @@
 <form method='POST' action='{{ route('auth.logout') }}'>
     <button>Logout</button>
 </form>
+
 @endsection
 
