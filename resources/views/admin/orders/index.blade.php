@@ -11,23 +11,33 @@
 
 <table>
   <tr>
+    <th>#</th>
     <th>ID</th>
     <th>Customer Name</th>
     <th>Email</th>
     <th>Shipped To</th>
     <th>Status</th>
     <th>Total Price</th>
+    <th>Order Items</th>
     <th>Ordered At</th>
     <th>Updated At</th>
   </tr>
     @foreach ($orders as $order)
     <tr>
+        <td>{{ $loop->iteration }}</td>
         <td>{{ $order->id }}</td>
         <td>{{ $order->user->first_name . ' ' . $order->user->last_name }}</td>
         <td>{{ $order->email }}</td>
         <td>{{ $order->shipped_to }}</td>
         <td>{{ $order->status }}</td>
         <td>{{ $order->total_price }}</td>
+        <td>
+            @foreach ($order->items as $item)
+                <a href="{{ route('search.product-management', ['query' => $item->product->name]) }}">
+                    {{ $item->product->name }}
+                </a> x{{ $item->quantity }}<br>
+            @endforeach
+        </td>
         <td>{{ $order->ordered_at }}</td>
         <td>{{ $order->updated_at }}</td>
         <td>

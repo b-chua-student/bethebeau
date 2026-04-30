@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -30,5 +31,7 @@ class DatabaseSeeder extends Seeder
         Product::factory(20)->create();
 
         Order::factory(30)->create();
+
+        OrderItem::factory(30)->create();
     }
 }

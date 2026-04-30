@@ -26,7 +26,45 @@
         @endforeach
     </select>
     <input type='number' name='total_price' value='{{ $order->total_price }}' step='0.01'/>
+    <h3>Order Items</h3>
+    <div id="order-items">
+        @foreach ($order->items as $index => $item)
+        <div class="item-row">
+            <input type="hidden" name="items[{{ $index }}][id]" value="{{ $item->id }}"/>
+            <select name="items[{{ $index }}][product_id]">
+                @foreach ($products as $product)
+                    <option value="{{ $product->id }}" {{ $item->product_id == $product->id ? 'selected' : '' }}>
+                        {{ $product->name }}
+                    </option>
+                @endforeach
+            </select>
+            <input type="number" name="items[{{ $index }}][quantity]" value="{{ $item->quantity }}" min="1"/>
+            <input type="number" name="items[{{ $index }}][unit_price]" value="{{ $item->unit_price }}" step="0.01"/>
+        </div>
+        @endforeach
+    </div>
+    <button type="button" onclick="addItem()">Add Item</button>
     <button type='submit'>Update Order</button>
+
+<script>
+let index = {{ $order->items->count() }};
+function addItem() {
+    const div = document.createElement('div');
+    div.classList.add('item-row');
+    div.innerHTML = `
+        <select name="items[${index}][product_id]">
+            @foreach ($products as $product)
+                <option value="{{ $product->id }}">{{ $product->name }}</option>
+            @endforeach
+        </select>
+        <input type="number" name="items[${index}][quantity]" placeholder="Quantity" min="1"/>
+        <input type="number" name="items[${index}][unit_price]" placeholder="Unit Price" step="0.01"/>
+    `;
+    document.getElementById('order-items').appendChild(div);
+    index++;
+}
+</script>
+
 </form>
 @endsection
 
