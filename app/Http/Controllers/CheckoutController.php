@@ -62,6 +62,6 @@ class CheckoutController extends Controller
             $cart->items()->delete();
         });
 
-        return redirect()->route('app.homepage', $order->id)->with('success', 'Order placed successfully!');
+        return redirect()->route('app.order-confirmation', $order->id)->with('success', 'Order placed successfully!');
     }
 }
