@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Category;
 
 class SearchController extends Controller
 {
@@ -45,5 +46,12 @@ class SearchController extends Controller
         $query = $request->input('query');
         $orders = Order::search($query)->get();
         return view('admin.orders.index', compact('orders'));
+    }
+
+    public function searchCategoryManagement(Request $request)
+    {
+        $query = $request->input('query');
+        $categories = Category::search($query)->get();
+        return view('admin.categories.index', compact('categories'));
     }
 }
