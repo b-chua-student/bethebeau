@@ -7,6 +7,8 @@
 
 <a href="{{ route('admin.categories.create') }}">Add Category</a>
 
+<x-search-form route='category-management'/>
+
 <table>
   <tr>
     <th>ID</th>
