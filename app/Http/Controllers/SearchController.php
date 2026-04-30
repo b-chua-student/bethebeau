@@ -9,7 +9,7 @@ use App\Models\User;
 
 class SearchController extends Controller
 {
-    public function searchProduct(Request $request)
+    public function searchProductListing(Request $request)
     {
         $query = $request->input('query');
         $from = $request->input('from', 'app.product-listing');
