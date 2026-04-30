@@ -28,12 +28,15 @@ Route::name('app.')->middleware('auth')->group(function () {
     Route::get('/shopping-cart', [CartController::class, 'index'])->name('shopping-cart');
     Route::post('/shopping-cart/add', [CartController::class, 'add'])->name('add-to-cart');
     Route::delete('/shopping-cart/remove/{id}', [CartController::class, 'remove'])->name('remove-from-cart');
+    Route::patch('/shopping-cart/update/{id}', [CartController::class, 'update'])->name('update-cart');
     Route::get('/product-listing', [ProductController::class, 'showActive'])->name('product-listing');
     Route::get('/product/{id}', [ProductController::class, 'showProduct'])->name('view-product');
+    Route::get('/order-confirmation/{order}', [CheckoutController::class, 'confirmation'])->name('order-confirmation');
 });
 
 Route::name('app.')->middleware(['auth', 'not-guest'])->group(function () {
-    Route::post('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('process-checkout');
 });
 
 Route::name('search.')->controller(SearchController::class)->middleware(['auth'])->group(function () {

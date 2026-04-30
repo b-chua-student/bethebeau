@@ -17,7 +17,15 @@
     <tr>
         <td>{{ $item->product->name }}</td>
         <td>{{ $item->product->price }}</td>
-        <td>{{ $item->quantity }}</td>
+        <td>
+            <form action="{{ route('app.update-cart', $item->id) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <button type="submit" name="quantity" value="{{ $item->quantity - 1 }}">-</button>
+                {{ $item->quantity }}
+                <button type="submit" name="quantity" value="{{ $item->quantity + 1 }}">+</button>
+            </form>
+        </td>
         <td>{{ $item->product->price * $item->quantity }}</td>
         <td>
             <form action="{{ route('app.remove-from-cart', $item->id) }}" method="POST">
@@ -32,8 +40,6 @@
 
 <p>Total: {{ $items->sum(fn($item) => $item->product->price * $item->quantity) }}</p>
 
-<form method='POST' action='{{ route('app.checkout') }}'>
-    <button>Checkout</button>
-</form>
+<a href='{{ route('app.checkout') }}'>Checkout</a>
 @endsection
 
