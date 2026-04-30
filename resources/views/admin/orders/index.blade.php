@@ -7,6 +7,8 @@
 
 <a href="{{ route('admin.orders.create') }}">Add Order</a>
 
+<x-search-form route='orders-management'/>
+
 <table>
   <tr>
     <th>ID</th>
