@@ -28,6 +28,7 @@ Route::name('app.')->middleware('auth')->group(function () {
     Route::get('/shopping-cart', [CartController::class, 'index'])->name('shopping-cart');
     Route::post('/shopping-cart/add', [CartController::class, 'add'])->name('add-to-cart');
     Route::delete('/shopping-cart/remove/{id}', [CartController::class, 'remove'])->name('remove-from-cart');
+    Route::patch('/shopping-cart/update/{id}', [CartController::class, 'update'])->name('update-cart');
     Route::get('/product-listing', [ProductController::class, 'showActive'])->name('product-listing');
     Route::get('/product/{id}', [ProductController::class, 'showProduct'])->name('view-product');
 });
