@@ -33,4 +33,5 @@
 
 a {
     color: var(--brand-color);
+    text-decoration: none;
 }
