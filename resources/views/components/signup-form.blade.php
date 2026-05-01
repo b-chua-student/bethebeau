@@ -1,0 +1,47 @@
+<div class='flex flex-col gap-8 w-lg h-lg p-12 bg-white rounded-4xl'>
+    <div>
+        <p class='text-4xl font-sans text-center text-(--brand-color) font-bold'>Sign Up</p>
+    </div>
+    <form class='flex flex-col' method='POST' action='{{ route("auth.register") }}'>
+        @csrf
+        <div class='flex flex-col gap-10'>
+            <div class='flex flex-col gap-2'>
+                <div class='flex flex-col gap-1'>
+                    <label class='text-(--brand-color) text-sm'>First Name</label>
+                    <input class='border border-(--brand-color) py-2 px-4 rounded-md' name='first_name' type='text' placeholder='First Name'/>
+                </div>
+                <div class='flex flex-col gap-1'>
+                    <label class='text-(--brand-color) text-sm'>Last Name</label>
+                    <input class='border border-(--brand-color) py-2 px-4 rounded-md' name='last_name' type='text' placeholder='Last Name'/>
+                </div>
+                <div class='flex flex-col gap-1'>
+                    <label class='text-(--brand-color) text-sm'>Email</label>
+                    <input class='border border-(--brand-color) py-2 px-4 rounded-md' name='email' type='email' placeholder='example@email.com'/>
+                </div>
+                <div class='flex flex-col gap-1'>
+                    <label class='text-(--brand-color) text-sm'>Password</label>
+                    <input class='border border-(--brand-color) py-2 px-4 rounded-md' name='password' type='password' placeholder='********'/>
+                </div>
+                <div class='flex flex-col gap-1'>
+                    <label class='text-(--brand-color) text-sm'>Confirm Password</label>
+                    <input class='border border-(--brand-color) py-2 px-4 rounded-md' name='password_confirmation' type='password' placeholder='********'/>
+                </div>
+            </div>
+            <div class='flex flex-col'>
+                <button type='submit' class='text-white bg-(--brand-color) rounded-full px-6 py-2 font-bold'>Sign Up</button>
+            </div>
+        </div>
+    </form>
+    <div class='flex flex-col text-center justify-center items-center'>
+        <p class='text-sm'>Already have an account?
+            <a href='{{ route("auth.login") }}'>Log In</a>
+        </p>
+    </div>
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li class='text-red-500 text-sm'>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+</div>

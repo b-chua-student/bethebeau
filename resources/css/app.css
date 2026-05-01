@@ -1,11 +1,30 @@
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+@font-face {
+    font-family: "The Seasons";
+    src: url("/public/fonts/the-seasons-regular.ttf") format("truetype");
+    font-family: "The Seasons Italic";
+    src: url("/public/fonts/the-seasons-italic.ttf") format("truetype");
+    font-family: "ITC Cheltenham";
+    src: url("/public/fonts/cheltenham-italic.ttf") format("truetype");
+}
+
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-seasons: "The Seasons", serif;
+    --font-seasons-italic: "The Seasons Italic", serif;
+    --font-baskerville: "Libre Baskerville", serif;
+    --font-cheltenham: "ITC Cheltenham", serif;
+
+    --brand-color: #48001e;
+}
+
+a {
+    color: var(--brand-color);
 }
