@@ -25,7 +25,7 @@ Route::name('auth.')->controller(AuthController::class)->group(function () {
 });
 
 Route::name('app.')->middleware('auth')->group(function () {
-    Route::get('/homepage', fn () => view('app.homepage'))->name('homepage');
+    Route::get('/homepage', [ProductController::class, 'showFeaturedProducts'])->name('homepage');
     Route::get('/shopping-cart', [CartController::class, 'index'])->name('shopping-cart');
     Route::post('/shopping-cart/add', [CartController::class, 'add'])->name('add-to-cart');
     Route::delete('/shopping-cart/remove/{id}', [CartController::class, 'remove'])->name('remove-from-cart');
