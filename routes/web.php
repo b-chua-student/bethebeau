@@ -39,6 +39,8 @@ Route::name('app.')->middleware('auth')->group(function () {
         Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
         Route::put('/', [ProfileController::class, 'update'])->name('update');
         Route::delete('/', [ProfileController::class, 'destroy'])->name('delete');
+        Route::get('/orders', [ProfileController::class, 'showOrders'])->name('orders');
+
     });
 
 });
