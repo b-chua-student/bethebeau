@@ -30,4 +30,13 @@ class ProfileController extends Controller
         $user->update($validated);
         return redirect()->route('app.profile.index')->with('success', 'Profile updated.');
     }
+
+    public function destroy()
+    {
+        $user = Auth::user();
+
+        $user->delete();
+
+        return redirect()->route('auth.login')->with('success', 'Account deleted.');
+    }
 }
