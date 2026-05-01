@@ -16,6 +16,16 @@ class ProductController extends Controller
         return view('admin.products.index', compact('products'));
     }
 
+    public function showFeaturedProducts()
+    {
+        $featuredProducts = Product::with('category')
+            ->latest()
+            ->take(4)
+            ->get();
+
+        return view('app.homepage', compact('featuredProducts'));
+    }
+
     public function showActive()
     {
         $products = Product::where('is_active', true)
