@@ -9,8 +9,14 @@
 @font-face {
     font-family: "The Seasons";
     src: url("/public/fonts/the-seasons-regular.ttf") format("truetype");
+}
+
+@font-face {
     font-family: "The Seasons Italic";
     src: url("/public/fonts/the-seasons-italic.ttf") format("truetype");
+}
+
+@font-face {
     font-family: "ITC Cheltenham";
     src: url("/public/fonts/cheltenham-italic.ttf") format("truetype");
 }
