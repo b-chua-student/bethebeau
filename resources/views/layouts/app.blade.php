@@ -11,6 +11,7 @@
   @vite(['resources/css/app.css'])
 </head>
 <body>
+    <x-app-navbar />
 
     @yield('content')
 
