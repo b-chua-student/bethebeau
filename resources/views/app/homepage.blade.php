@@ -6,6 +6,7 @@
 <h1>Homepage</h1>
 <a href='{{ route('app.shopping-cart') }}'>Shopping Cart</a>
 <a href='{{ route('app.product-listing') }}'>Product Listing</a>
+<a href='{{ route('app.profile.index') }}'>My Profile</a>
 <form method='POST' action='{{ route('auth.logout') }}'>
     <button>Logout</button>
 </form>

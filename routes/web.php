@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProfileController;
 
 Route::fallback(fn () => redirect()->route('auth.login'));
 
@@ -32,6 +33,16 @@ Route::name('app.')->middleware('auth')->group(function () {
     Route::get('/product-listing', [ProductController::class, 'showActive'])->name('product-listing');
     Route::get('/product/{id}', [ProductController::class, 'showProduct'])->name('view-product');
     Route::get('/order-confirmation/{order}', [CheckoutController::class, 'confirmation'])->name('order-confirmation');
+
+    Route::name('profile.')->prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'index'])->name('index');
+        Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
+        Route::put('/', [ProfileController::class, 'update'])->name('update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('delete');
+        Route::get('/orders', [ProfileController::class, 'showOrders'])->name('orders');
+
+    });
+
 });
 
 Route::name('app.')->middleware(['auth', 'not-guest'])->group(function () {
