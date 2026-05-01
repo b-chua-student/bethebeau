@@ -26,9 +26,19 @@
 
     <!-- Actions -->
     <div class="flex items-center gap-10">
+        <!-- Profile Link -->
+        <a href="{{ route('app.profile.index') }}" class="block">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white transition-transform duration-200 hover:scale-115" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+        </a>
+
+        <!-- Cart -->
         <a href="{{ route('app.shopping-cart') }}" class="block">
             <img src="{{ asset('img/cart-white.svg') }}" alt="Cart" class="h-7 w-7 transition-transform duration-200 hover:scale-115">
         </a>
+
+        <!-- Logout -->
         <form method="POST" action="{{ route('auth.logout') }}" class="m-0">
             @csrf
             <button type="submit" class="group relative p-0 text-white opacity-100 outline-none transition-opacity hover:opacity-85 focus:ring-0">
