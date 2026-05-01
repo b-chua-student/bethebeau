@@ -4,46 +4,57 @@
   <meta charset="UTF-8" />
   <title>@yield('title')</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="" />
   <link rel="icon" href="favicon.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{{ asset('css/components/style.css') }}">
   @vite(['resources/css/app.css'])
 </head>
-<body>
+<body class="bg-gray-50">
 
-    <x-admin-navbar />
-
-    @if (session('success'))
-        <div id="success-banner" class="alert alert-success" style="position:absolute; top:1rem; right:1rem; z-index:9999;">
-            {{ session('success') }}
+    <div class="flex min-h-screen">
+        <!-- Sidebar (Fixed width) -->
+        <div class="sticky top-0 h-screen w-64 shrink-0 overflow-y-auto">
+            <x-admin-navbar />
         </div>
-        <script>
-            setTimeout(() => {
-                document.getElementById('success-banner').style.display = 'none';
-            }, 3000);
-        </script>
-    @endif
 
-    @if ($errors->any())
-        <div style="position:fixed; top:1rem; right:1rem; z-index:9999; display:flex; flex-direction:column; gap:0.5rem;">
-            @foreach ($errors->all() as $error)
-                <div class="error-banner alert alert-danger m-0">
-                    {{ $error }}
-                </div>
-            @endforeach
-        </div>
-        <script>
-            setTimeout(() => {
-                document.querySelectorAll('.error-banner').forEach(el => el.style.display = 'none');
-            }, 3000);
-        </script>
-    @endif
+        <!-- Main Content (Flexible width) -->
+        <main class="flex-1">
+            <!-- Notifications Container -->
+            <div class="fixed top-4 right-4 z-[9999] flex flex-col gap-3 pointer-events-none">
+                @if (session('success'))
+                    <div id="success-banner" class="pointer-events-auto min-w-[300px] border-l-4 border-green-500 bg-white p-4 shadow-xl">
+                        <p class="text-xs font-bold uppercase tracking-widest text-gray-900">Success</p>
+                        <p class="text-sm text-gray-600">{{ session('success') }}</p>
+                    </div>
+                @endif
 
-    @yield('content')
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <div class="error-banner pointer-events-auto min-w-[300px] border-l-4 border-red-500 bg-white p-4 shadow-xl">
+                            <p class="text-xs font-bold uppercase tracking-widest text-gray-900">Error</p>
+                            <p class="text-sm text-gray-600">{{ $error }}</p>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" />
+            <!-- Page Content -->
+            <main class="flex-1 bg-gray-50">
+            <div class="p-8 lg:p-12">
+                @yield('content')
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Auto-hide notifications
+        setTimeout(() => {
+            const success = document.getElementById('success-banner');
+            if(success) success.style.display = 'none';
+
+            document.querySelectorAll('.error-banner').forEach(el => {
+                el.style.display = 'none';
+            });
+        }, 4000);
+    </script>
 </body>
 </html>
-
-
