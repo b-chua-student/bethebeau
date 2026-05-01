@@ -37,11 +37,16 @@
             <a href='{{ route("auth.login") }}'>Log In</a>
         </p>
     </div>
+
     @if ($errors->any())
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li class='text-red-500 text-sm'>{{ $error }}</li>
-            @endforeach
-        </ul>
+        <div class="mt-4 p-4 bg-red-50 border-l-4 border-red-500">
+            <ul class="list-none">
+                @foreach ($errors->all() as $error)
+                    <li class="text-xs font-bold text-red-600 font-sans">
+                        {{ $error }}
+                    </li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 </div>
