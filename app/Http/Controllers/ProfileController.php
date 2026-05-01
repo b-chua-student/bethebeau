@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\UpdateProfileRequest;
 
+use App\Models\Order;
+
 class ProfileController extends Controller
 {
     public function index()
@@ -38,5 +40,15 @@ class ProfileController extends Controller
         $user->delete();
 
         return redirect()->route('auth.login')->with('success', 'Account deleted.');
+    }
+
+    public function showOrders()
+    {
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id)
+            ->whereHas('user')
+            ->latest('ordered_at')
+            ->get();
+        return view('app.profile.orders', compact('user', 'orders'));
     }
 }
