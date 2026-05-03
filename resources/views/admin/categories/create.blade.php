@@ -6,7 +6,7 @@
 <div class="container mx-auto max-w-2xl">
     <!-- Header -->
     <div class="mb-10">
-        <a href="{{ route('admin.categories.create') }}" class="bg-[var(--brand-color)] px-6 py-3 text-xs font-bold uppercase tracking-widest !text-white !hover:opacity-90 !transition-opacity">
+        <a href="{{ route('admin.categories.index') }}" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-[var(--brand-color)] transition-colors">
             &larr; Back to Category Management
         </a>
         <h1 class="font-seasons-italic mt-4 text-4xl text-gray-900">Create Category</h1>
