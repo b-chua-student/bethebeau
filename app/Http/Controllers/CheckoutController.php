@@ -27,6 +27,10 @@ class CheckoutController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'shipped_to' => 'required|string|max:500',
+        ]);
+
         $user = Auth::user();
         $cart = Cart::where('user_id', $user->id)->with('items.product')->first();
 
@@ -41,11 +45,17 @@ class CheckoutController extends Controller
 
         $order = null;
 
-        DB::transaction(function () use ($user, $cart, $total, &$order) {
+        DB::transaction(function () use ($user, $cart, $total, $request, &$order) {
+            // 1. Update the User's permanent profile address
+            $user->update([
+                'address' => $request->shipped_to
+            ]);
+
+            // 2. Create the Order with the new address
             $order = Order::create([
                 'user_id'     => $user->id,
-                'email'       => $user->email,
-                'shipped_to'  => $user->address,
+                'email'        => $user->email,
+                'shipped_to'  => $request->shipped_to,
                 'status'      => 'pending',
                 'total_price' => $total,
             ]);
@@ -62,7 +72,7 @@ class CheckoutController extends Controller
             $cart->items()->delete();
         });
 
-        return redirect()->route('app.order-confirmation', $order->id)->with('success', 'Order placed successfully!');
+        return redirect()->route('app.order-confirmation', $order->id)->with('success', 'Order placed and profile address updated!');
     }
 
     public function confirmation(Order $order)
