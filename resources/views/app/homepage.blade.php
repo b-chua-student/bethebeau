@@ -12,7 +12,7 @@
     <div class="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
         <div class="relative z-20 mb-12 w-full max-w-2xl px-4">
             <form action="{{ route('search.product-listing') }}" method="GET" class="relative">
-                <input type="text" name="search" placeholder="Search for products..."
+                <input type="text" name="query" placeholder="Search for products..."
                        class="w-full rounded-full border-none bg-white/20 py-4 pl-8 pr-16 text-lg text-white shadow-2xl placeholder:text-gray-300 focus:ring-4 focus:ring-[var(--brand-color)] outline-none">
                 <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-3 text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
